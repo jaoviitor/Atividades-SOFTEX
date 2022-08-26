@@ -2,18 +2,19 @@ function calculadora(){
     var num1, num2, op, result //declarando as variáveis
     
     //atribuindo os valores nas variáveis e tratando erros
-    num1 = parseFloat(prompt("Digite o primeiro número: "))
-    num2 = parseFloat(prompt("Digite o segundo número: "))
-    op = parseInt(prompt("Escolha uma operação 1- soma, 2- subtração, 3- divisão, 4- multiplicação: "))
+    let num1 = Number(prompt("Digite o primeiro número: "))
+    let num2 = Number(prompt("Digite o segundo número: "))
+    let op = Number(prompt("Escolha uma operação 1- soma, 2- subtração, 3- divisão, 4- multiplicação: "))
+    
+    //tratando os erros
     try{
-        if(typeof num1 != "number") throw("Não foi digitado um número.")
-        if(typeof num2 != "number") throw("Não foi digitado um número.")
-        if(typeof op != "number") throw("Operação inválida.")
+        if((num1 || num2) != Number) throw("Não foi digitado um número.")
+        if(op != Number) throw("Operação inválida.")
         if(op > 4) throw("Operação inválida.")
         if(op < 1) throw("Operação inválida.")
     }
-    catch(e){
-        console.log(e)
+    catch(error){
+        console.log(error)
     }
     //realizando as operações
 
