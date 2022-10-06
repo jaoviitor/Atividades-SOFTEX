@@ -1,0 +1,5 @@
+class abstractNav {
+    constructor(){
+        
+    }
+}
