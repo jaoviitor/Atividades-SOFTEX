@@ -1,9 +1,7 @@
-const options ={
-    method: "GET",
-    mode: "cors",
-    caches: "default"
-}
-
-fetch('https://jsonplaceholder.typicode.com/todos/1')
-  .then(response => response.json())
-  .then(json => console.log(json))
+let box = document. getElementById("box");
+let DATA = async () => (await fetch("https://jsonplaceholder.typicode.com/posts")).json
+DataTransfer().then((res) => {
+  console.log(res)
+}).catch((err) => {
+  console.log(err)
+})
