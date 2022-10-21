@@ -1,0 +1,15 @@
+O desenvolvimento de um projeto de banco de dados passa por fases que são de grande importância para sua implementação. 
+Descreva as etapas desse processo.
+
+1- Análise de requisitos: Fase inicial onde é realizada a identificação dos requisitos que constam em um banco de dados
+através de entrevistas com o cliente, a partir dela o minimundo é desenvolvido.
+
+2- Projeto conceitual: A partir das informações coletadas na ultima etapa é gerado um esquema utilizando um modelo de dados
+conceitual de alto nível, o Modelo Entidade Relacionamento (MER).
+
+3- Projeto Lógico: Etapa do processo onde o mapeamento do modelo entidade-relacionamento é elaborado, aqui são criadas as
+tabelas, regras de relacionamento, dados de colunas, visões, etc. Gerando então o esquema detalhado do banco de dados.
+
+4- Projeto físico: Nessa etapa são definidas as estruturas de armazenamento, os índices e a organização de arquivos do banco
+de dados, apresenta a forma de armazenamento, as permissões de acesso ao usuário e os scripts para criação dos objetos, tabelas,
+colunas, etc.
