@@ -1,0 +1,20 @@
+A normalização de dados é um processo realizado dentro das tabelas para evitar anomalias. 
+Com base no conteúdo e nos links sugeridos do hipertexto 3 do banco de dados I, descreva 
+o processo de normalização citando as formas normais apresentadas.
+
+
+
+Processo de normalização: É um processo de organização dos dados no banco de dados, aumentando a quantidade de
+tabelas, desmembrando as já existentes em novas mais específicas com o objetivo de evitar anomalias nas tabelas.
+
+1FN: Só aceita valores atômicos e possui uma chave primária, não eiste grupos de atributos repetidos e suas relações
+e não possuem atributos multivalorados.
+
+2FN: Obrigatoriamente tem que estar na 1FN. Em caso de existir chaves primárias compostas, exige que todas as relações
+tenham dependência total.
+
+3FN: Obrigatoriamente tem que estar na 2FN e possuir dependência exclusiva da chave primária da tabela, todos os seus
+atributos devem ser funcionamente independentes.
+
+FNBC: Obrigatoriamente tem que estar na 3FN e possuir tabela com mais de uma chave candidata. Separa em novas tabelas,
+valores que ainda estejam redendantes.
