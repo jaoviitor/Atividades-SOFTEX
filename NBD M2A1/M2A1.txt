@@ -1,0 +1,36 @@
+De acordo com os conceitos estudados, exiba os resultados das consultas das operações select, project, união, intersecção e diferença.
+Siga as instruções com base na tabela apresentada em anexo.
+
+- Mostre as informações apenas dos alunos aprovados. A aprovação é acima de 7,0;
+- Exiba as informações dos alunos do primeiro ano com nota maior ou igual a 8,0;
+- Exiba apenas os nomes e as notas dos alunos;
+- Crie uma tabela PROFESSOR que apresente apenas o primeiro e o último nome do professor;
+- Crie uma tabela ALUNO com o primeiro e o último nome de cada;
+- Mostre o resultado da união entre a tabela ALUNO(PNome, UNome) e a tabela PROFESSOR;
+- Exiba o resultado da intersecção entre a tabela ALUNO(PNome, UNome) e a tabela PROFESSOR;
+- Exiba o resultado da diferença entre a tabela ALUNO(PNome, UNome) e a tabela PROFESSOR. 
+
+
+1- SELECT * FROM Aluno WHERE Nota > 7
+
+2- SELECT * FROM Aluno WHERE Série = 1º ano AND Nota >= 8
+
+3- SELECT P.Nome, U.Nome, Nota FROM Aluno
+
+4- CREATE TABLE Professor(P.Nome VARCHAR(25) NOT NULL,
+			  U.Nome VARCHAR(25) NOT NULL);
+
+5- CREATE TABLE Aluno(P.Nome VARCHAR(25) NOT NULL,
+		      U.Nome VARCHAR(25) NOT NULL);
+
+6- SELECT * FROM Aluno
+   UNION
+   SELECT * FROM Professor
+
+7- SELECT * FROM Aluno
+   INTERSECT
+   SELECT * FROM Professor
+
+8- SELECT * FROM Aluno
+   EXCEPT
+   SELECT * FROM Professor
