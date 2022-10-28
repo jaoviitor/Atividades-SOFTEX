@@ -1,0 +1,52 @@
+De acordo com as tabelas, programe um código SQL para gerar a estrutura do banco de dados dessa biblioteca. 
+Siga as instruções: 
+
+1. inclua a coluna DATA_NASCIMENTO na tabela ALUNO do tipo string e de tamanho 10 caracteres; 
+2. altere a coluna TELEFONE para CONTATO e seu tipo de dado para string; 
+3. inclua o campo ISBN na tabela LIVRO, com tamanho de 13 caracteres do tipo inteiro; 
+4. e remova o campo ISBN da tabela LIVRO. 
+
+// CRIANDO AS TABELAS //
+
+CREATE TABLE Aluno(ID INT NOT NULL,
+				   Nome VARCHAR(50) NOT NULL,
+				   Matricula INT NOT NULL,
+				   Email VARCHAR(60) NOT NULL,
+				   Endereco VARCHAR(50) NOT NULL,
+				   Telefone CHAR(11) NOT NULL,
+				   PRIMARY KEY (ID));
+
+CREATE TABLE Sessao(Codigo INT NOT NULL,
+					Descricao VARCHAR(30) NOT NULL,
+					Localizacao VARCHAR(20),
+					PRIMARY KEY (Codigo));
+
+CREATE TABLE Livro(Cd_Livro INT NOT NULL,
+				   Titulo VARCHAR(50) NOT NULL,
+				   Autor VARCHAR(50) NOT NULL,
+				   Cd_Sessao INT NOT NULL,
+				   PRIMARY KEY (Cd_Livro),
+				   FOREIGN KEY (Cd_Sessao) REFERENCES Sessao);
+
+CREATE TABLE Emprestimo(Cd_Emprestimo INT NOT NULL,
+						Data_Hora DATE NOT NULL,
+						Matric_Aluno INT NOT NULL,
+						Data_Devolucao DATE NOT NULL,
+						PRIMARY KEY (Cd_Emprestimo),
+						FOREIGN KEY (Matric_Aluno) REFERENCES Aluno);
+
+CREATE TABLE Livro_Emprestimo(Cod_Livro INT NOT NULL,
+							  Cod_Emprestimo INT NOT NULL,
+							  FOREIGN KEY (Cod_Livro) REFERENCES Livro,
+							  FOREIGN KEY (Cod_Emprestimo) REFERENCES Emprestimo);
+
+
+// Instruções //
+
+1- ALTER TABLE Aluno ADD COLUMN Data_Nascimento VARCHAR(10) NOT NULL;
+
+2- EXEC sp_rename 'Aluno.Telefone_Contato', 'Contato','column';
+
+3- ALTER TABLE Livro ADD ISBN INT NOT NULL;
+
+4- ALTER TABLE Livro DROP COLUMN ISBN;
