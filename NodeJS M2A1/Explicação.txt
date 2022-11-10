@@ -1,0 +1,6 @@
+Sem usar bibliotecas, crie um projeto simples em Node.js que seja capaz de responder requisições HTTP.
+Explique como rodar e testar.
+
+O projeto se encontra na pasta "projeto simples node"
+Para rodar, você deve abrir o terminal e digitar "node servidor.js", que no caso é o nome do arquivo JS que vamos rodar.
+Para testar, é só abrir o navegador e digitar "localhost:8080" que é a porta que foi escolhida no código.
