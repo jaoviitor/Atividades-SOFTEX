@@ -1,0 +1,15 @@
+Com base nos vídeos 1 e 2, explique como a web funciona a partir do ponto de vista do protocolo cliente servidor. 
+Crie o começo de um projeto em node.js, usando o npm e informe os comandos utilizados.
+
+
+Como a web funciona: De inicio um cliente (dispositivos conectados à internet do usuário) solicita a um servidor
+a visualização de um site atraves de uma solicitação GET através do HTTP, informando ao servidor que está procurando
+o código HTML daquele site. Após o servidor receber essa requisição HTTP, ele responde em forma de código indicando
+o status da solicitação como 200 (caso de tudo certo) ou 404 (quando não é encontrado).
+
+Criando o começo de um projeto em Node.js usando npm
+
+1- criar a pasta do projeto
+2- abrir o terminar nessa pasta
+3- rodar o comando "npm init"
+4- dar as informações do projeto como: nome, versão, descrição, um comando de teste, o repositório GIT, o nome do autor, etc
