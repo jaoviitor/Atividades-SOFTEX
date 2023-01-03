@@ -1,0 +1,64 @@
+--CREATE DATABASE Exercicio;
+--USE Exercicio;
+
+--------------------------------------------------------- CRIANDO AS TABELAS ---------------------------------------------------------
+--CREATE TABLE Curso(ID INT NOT NULL,
+--				   NomeCurso VARCHAR(50) NOT NULL,
+--				   Modalidade VARCHAR(20) NOT NULL,
+--				   Turno VARCHAR(15) NOT NULL,
+--				   PRIMARY KEY (ID));
+
+--CREATE TABLE Aluno (Matricula INT NOT NULL,
+--					Nome VARCHAR(50) NOT NULL,
+--					Sexo CHAR(1) NOT NULL,
+--					Numero CHAR(11) NULL,
+--					ID INT NOT NULL,
+--					PRIMARY KEY (Matricula),
+--					FOREIGN KEY (ID) REFERENCES Curso);
+
+--CREATE TABLE ExAluno (Matricula INT NOT NULL,
+--					    Nome VARCHAR(50) NOT NULL,
+--					    Sexo CHAR(1) NOT NULL,
+--					    Numero CHAR(11) NULL,
+--					    ID INT NOT NULL,
+--					    PRIMARY KEY (Matricula),
+--					    FOREIGN KEY (ID) REFERENCES Curso);
+
+--INSERT INTO Curso (ID, NomeCurso, Modalidade, Turno) VALUES (01, 'Adm', 'Presencial', 'Manha');
+--INSERT INTO Curso (ID, NomeCurso, Modalidade, Turno) VALUES (02, 'ADS', 'EAD', 'Noite');
+--INSERT INTO Curso (ID, NomeCurso, Modalidade, Turno) VALUES (03, 'Direito', 'Presencial', 'Noite');
+--INSERT INTO Curso (ID, NomeCurso, Modalidade, Turno) VALUES (04, 'Enfermagem', 'Presencial', 'Tarde');
+
+--INSERT INTO Aluno (Matricula, Nome, Sexo, Numero, ID) VALUES (88001, 'Rodrigo Marques de Araujo', 'H', '81919216075', 01);
+--INSERT INTO Aluno (Matricula, Nome, Sexo, Numero, ID) VALUES (88002, 'Gislene Camacho Ximenes', 'M', '81909066345', 01);
+--INSERT INTO Aluno (Matricula, Nome, Sexo, Numero, ID) VALUES (88003, 'Ataíde Eger Rocha', 'H', '81977610129', 01);
+--INSERT INTO Aluno (Matricula, Nome, Sexo, Numero, ID) VALUES (88004, 'Marcelo Campelo Nogueira', 'H', '81901119446', 02);
+--INSERT INTO Aluno (Matricula, Nome, Sexo, Numero, ID) VALUES (88005, 'Nelmo Pereira Jales', 'H', '81947592205', 02);
+--INSERT INTO Aluno (Matricula, Nome, Sexo, Numero, ID) VALUES (88006, 'Francielle Sá Barboza', 'M', '81919030558', 02);
+--INSERT INTO Aluno (Matricula, Nome, Sexo, Numero, ID) VALUES (88007, 'Elisângela Magalhães Rezende', 'M', '81997652045', 03);
+--INSERT INTO Aluno (Matricula, Nome, Sexo, Numero, ID) VALUES (88008, 'Ronald Giron Couto', 'H', '81951096944', 03);
+--INSERT INTO Aluno (Matricula, Nome, Sexo, Numero, ID) VALUES (88009, 'Sergino Macedo Magalhães', 'H', '81932373021', 04);
+--INSERT INTO Aluno (Matricula, Nome, Sexo, Numero, ID) VALUES (88010, 'Andrea Barcelos Carvalheiro', 'M', '81924551386', 04);
+
+--------------------------------------------------------- CRIANDO O TRIGGER ---------------------------------------------------------
+
+--CREATE TRIGGER Ex_Aluno ON Aluno
+--FOR DELETE
+--AS DECLARE @AlunoMatricula INT,
+--		   @AlunoNome VARCHAR(50),
+--		   @AlunoSexo CHAR(1),
+--		   @AlunoNumero CHAR(11),
+--		   @AlunoID INT;
+--SELECT @AlunoMatricula = del.Matricula FROM DELETED del; 
+--SELECT @AlunoNome = del.Nome FROM DELETED del; 
+--SELECT @AlunoSexo = del.Sexo FROM DELETED del; 
+--SELECT @AlunoNumero = del.Numero FROM DELETED del; 
+--SELECT @AlunoID = del.ID FROM DELETED del; 
+--INSERT INTO ExAluno (Matricula, Nome, Sexo, Numero, ID) VALUES (@AlunoMatricula, @AlunoNome, @AlunoSexo, @AlunoNumero, @AlunoID);
+--PRINT 'Aluno deletado com sucesso!';
+
+--------------------------------------------------------- TESTANDO O TRIGGER ---------------------------------------------------------
+
+--SELECT * FROM Aluno;
+--SELECT * FROM ExAluno;
+--DELETE FROM Aluno WHERE Matricula = 88001;
