@@ -1,0 +1,29 @@
+const express = require('express');
+const app = express();
+const PORT = 8080;
+
+// Rota estática
+app.get('/', (req, res) => {
+  res.send('Bem-vindo ao servidor web!');
+});
+
+// Rota dinâmica com placeholder
+app.get('/users/:userId', (req, res) => {
+  const { userId } = req.params;
+  res.send(`Você está visualizando o perfil do usuário com o ID ${userId}.`);
+});
+
+// Rota dinâmica com query
+app.get('/search', (req, res) => {
+  const { q } = req.query;
+  res.send(`Você está procurando por: ${q}`);
+});
+
+// Rota estática para página de erro
+app.use((req, res) => {
+  res.status(404).send('Página não encontrada!');
+});
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
