@@ -1,0 +1,13 @@
+Pilares de segurança de dados:
+
+Confidencialidade: significa que os dados só podem ser acessados por pessoas autorizadas e que têm permissão para vê-los. 
+É importante garantir que apenas usuários confiáveis e autenticados possam acessar os dados e que as informações sensíveis sejam criptografadas ou protegidas por meio de outras técnicas de segurança.
+
+Integridade: refere-se à garantia de que os dados não serão alterados ou corrompidos durante o armazenamento, transmissão ou processamento. 
+É importante garantir que os dados sejam armazenados em um formato seguro e que as atualizações sejam feitas de forma segura, sem corromper ou danificar informações existentes.
+
+Disponibilidade: significa que os dados estarão disponíveis sempre que forem necessários para serem acessados ou usados. 
+É importante garantir que os sistemas e servidores sejam robustos e estejam sempre disponíveis e que os dados estejam armazenados em um ambiente seguro e estável.
+
+Auditabilidade: refere-se à capacidade de monitorar e registrar todas as atividades relacionadas aos dados e aos usuários que acessam esses dados. 
+É importante ter um registro detalhado de todas as transações que ocorrem no banco de dados, para que seja possível identificar eventuais problemas de segurança ou falhas no sistema.
