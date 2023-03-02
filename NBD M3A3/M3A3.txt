@@ -1,0 +1,9 @@
+CREATE PROCEDURE sp_levantamento_diario
+AS
+BEGIN
+    SET NOCOUNT ON;
+    DECLARE @data_compra DATE = GETDATE();
+    SELECT COUNT(*) AS total_produtos_comprados
+    FROM tabela_compras
+    WHERE data_compra = @data_compra;
+END
