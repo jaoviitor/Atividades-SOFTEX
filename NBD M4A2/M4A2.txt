@@ -1,0 +1,10 @@
+Métodos que podem ser utilizados para melhorar a segurança das senhas dos funcionários de uma empresa:
+
+Fortalecer as políticas de senha: é importante ter políticas de senha robustas que orientem os funcionários a criar senhas seguras e complexas. 
+Isso pode incluir requisitos como comprimento mínimo da senha, uso de caracteres especiais, números e letras maiúsculas e minúsculas, além de impedir o uso de senhas comuns e fáceis de adivinhar.
+
+Autenticação em duas etapas: a autenticação em duas etapas é um método de segurança que exige que o usuário forneça dois tipos de informações para fazer login, como uma senha e um código enviado por mensagem de texto ou por meio de um aplicativo. 
+Isso torna muito mais difícil para um invasor acessar uma conta, mesmo que tenha a senha.
+
+Atualizações regulares de senha: recomenda-se que os funcionários atualizem suas senhas regularmente, pelo menos a cada três meses. Isso impede que as senhas sejam comprometidas e limita o tempo que um invasor pode acessar uma conta. 
+Além disso, as senhas não devem ser repetidas ou usadas em outras contas, para evitar que uma violação em uma conta comprometa outras contas.
