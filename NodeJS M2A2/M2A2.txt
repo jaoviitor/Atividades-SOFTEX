@@ -1,0 +1,15 @@
+const express = require('express');
+const app = express();
+const PORT = 8080;
+
+app.get('/', (req, res) => {
+  res.send('Requisição GET recebida');
+});
+
+app.post('/', (req, res) => {
+  res.send('Requisição POST recebida');
+});
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
