@@ -1,0 +1,11 @@
+CREATE FUNCTION fn_total_clientes_cadastrados(@data_cadastro DATE)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @total_clientes INT;
+    SELECT @total_clientes = COUNT(*) FROM tabela_clientes
+    WHERE data_cadastro = @data_cadastro;
+    RETURN @total_clientes;
+END
+
+SELECT dbo.fn_total_clientes_cadastrados('2023-03-02') AS total_clientes;
