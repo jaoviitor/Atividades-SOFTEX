@@ -1,0 +1,28 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+
+let books = [
+  {id: 1, title: "O Pequeno Príncipe", author: "Antoine de Saint-Exupéry", year: 1943},
+  {id: 2, title: "A Arte da Guerra", author: "Sun Tzu", year: 500},
+  {id: 3, title: "Dom Casmurro", author: "Machado de Assis", year: 1899}
+];
+
+// rota para listar todos os livros
+app.get('/books', (req, res) => {
+  res.json(books);
+});
+
+// rota para adicionar um novo livro
+app.post('/books', (req, res) => {
+  const newBook = req.body;
+  books.push(newBook);
+  res.json(newBook);
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
+
