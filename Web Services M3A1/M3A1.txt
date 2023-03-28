@@ -1,0 +1,78 @@
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+
+// lista de livros
+let books = [
+  {
+    id: '1',
+    name: 'O Senhor dos Anéis',
+    author: 'J.R.R. Tolkien',
+    isbn: '978-0-00-752554-6'
+  },
+  {
+    id: '2',
+    name: 'A Guerra dos Tronos',
+    author: 'George R. R. Martin',
+    isbn: '978-85-7665-191-0'
+  },
+  {
+    id: '3',
+    name: '1984',
+    author: 'George Orwell',
+    isbn: '978-85-359-1361-7'
+  }
+];
+
+// retorna uma lista com todos os livros
+app.get('/books', (req, res) => {
+  res.json(books);
+});
+
+// retorna as informações de um livro específico, identificado pelo ID
+app.get('/books/:id', (req, res) => {
+  const id = req.params.id;
+  const book = books.find(b => b.id === id);
+  if (!book) {
+    res.sendStatus(404);
+  } else {
+    res.json(book);
+  }
+});
+
+// adiciona um novo livro ao estoque da livraria
+app.post('/books', (req, res) => {
+  const book = req.body;
+  book.id = (books.length + 1).toString();
+  books.push(book);
+  res.status(201).json(book);
+});
+
+// atualiza as informações de um livro específico, identificado pelo ID
+app.put('/books/:id', (req, res) => {
+  const id = req.params.id;
+  const bookIndex = books.findIndex(b => b.id === id);
+  if (bookIndex === -1) {
+    res.sendStatus(404);
+  } else {
+    const book = req.body;
+    book.id = id;
+    books[bookIndex] = book;
+    res.sendStatus(204);
+  }
+});
+
+// remove um livro do estoque da livraria, identificado pelo ID
+app.delete('/books/:id', (req, res) => {
+  const id = req.params.id;
+  const bookIndex = books.findIndex(b => b.id === id);
+  if (bookIndex === -1) {
+    res.sendStatus(404);
+  } else {
+    books.splice(bookIndex, 1);
+    res.sendStatus(204);
+  }
+});
+
