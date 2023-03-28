@@ -1,0 +1,91 @@
+//Criando o server
+
+var http = require('http');
+const app = require('./app')
+const port = process.env.PORT || 3000;
+const server = http.createServer(app);
+server.listen(port);
+
+//Criando o app
+
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+
+const rotaPedidos = require('./routes/pedidos')
+
+app.use(bodyParser.urlencoded({ extended: false})); // apenas dados simples
+app.use(bodyParser.json()); // json de entrada no body
+
+app.use('/pedidos', rotaPedidos);
+
+//TRATAMENTO PARA QUANDO NÃO FOR ENCONTRADO UMA ROTA
+app.use((req, res, next) =>{
+    const erro = new Error('Não encontrado');
+    erro.status = 404;
+    next(erro);
+});
+
+app.use((error, req, res, next) =>{
+    res.status(error.status || 500);
+    return res.send({
+        erro: {
+            mensagem: error.message
+        }
+    });
+});
+
+module.exports = app;
+
+//Criando as rotas
+
+const express = require('express');
+const router = express.Router();
+
+//RETORNA OS PEDIDOS
+router.get('/', (req, res, next) => {
+    res.status(200).send({
+        mensagem: 'Retorna os pedidos'
+    });
+});
+
+//INSERE OS PEDIDOS
+router.post('/', (req, res, next) => {
+    const pedido = {
+        id_solicitacao: req.body.id_solicitacao,
+        quantidade: req.body.quantidade
+    }
+
+    res.status(201).send({
+        mensagem: 'O pedido foi criado',
+        pedidoCriado: pedido
+    });
+});
+
+//RETORNA OS DADOS DE UM PEDIDO
+router.get('/:id_pedido', (req, res, next) =>{
+    const id = req.params.id_pedido
+
+    res.status(200).send({
+        mensagem: 'Detalhes do pedido',
+        id_pedido: id
+    })
+});
+
+//EXCLUI UM PEDIDO
+router.delete('/', (req, res, next) => {
+    res.status(201).send({
+        mensagem: 'Pedido excluído'
+    });
+});
+
+module.exports = router;
+
+
+WSDL
+O WSDL é uma linguagem XML utilizada para descrever serviços web SOAP. Ele define a interface do serviço web, incluindo as operações disponíveis, os parâmetros de entrada e de saída e o formato das mensagens.
+O WSDL é utilizado para permitir a interoperabilidade entre diferentes plataformas e linguagens de programação, pois define um padrão comum para a comunicação entre serviços web.
+
+A função do WSDL é permitir que os clientes de um serviço web conheçam sua interface e saibam como utilizá-lo.
+Ele define a estrutura das mensagens SOAP que devem ser enviadas para o serviço web e como as respostas devem ser estruturadas.
+O WSDL também define os endpoints do serviço web, ou seja, as URLs que devem ser utilizadas para enviar as requisições.
