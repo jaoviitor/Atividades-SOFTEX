@@ -1,0 +1,102 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+const app = express();
+const port = 3000;
+
+// Configuração do bodyParser para fazer parsing do body da requisição
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// Configuração do MongoDB
+mongoose.connect('mongodb://localhost/alunos', { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'Erro na conexão com o MongoDB:'));
+db.once('open', function() {
+  console.log('Conexão com o MongoDB estabelecida com sucesso!');
+});
+
+// Definição do schema do aluno
+const alunoSchema = new mongoose.Schema({
+  nome: String,
+  idade: Number,
+  curso: String
+});
+
+// Definição do modelo do aluno a partir do schema
+const Aluno = mongoose.model('Aluno', alunoSchema);
+
+// Rota para criação de um aluno
+app.post('/alunos', function(req, res) {
+  const aluno = new Aluno(req.body);
+
+  aluno.save(function(err) {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Erro ao criar aluno');
+    } else {
+      res.status(201).json(aluno);
+    }
+  });
+});
+
+// Rota para listagem de todos os alunos
+app.get('/alunos', function(req, res) {
+  Aluno.find({}, function(err, alunos) {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Erro ao listar alunos');
+    } else {
+      res.status(200).json(alunos);
+    }
+  });
+});
+
+// Rota para obtenção de um aluno por ID
+app.get('/alunos/:id', function(req, res) {
+  Aluno.findById(req.params.id, function(err, aluno) {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Erro ao obter aluno');
+    } else if (!aluno) {
+      res.status(404).send('Aluno não encontrado');
+    } else {
+      res.status(200).json(aluno);
+    }
+  });
+});
+
+// Rota para atualização de um aluno por ID
+app.put('/alunos/:id', function(req, res) {
+  Aluno.findByIdAndUpdate(req.params.id, req.body, { new: true }, function(err, aluno) {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Erro ao atualizar aluno');
+    } else if (!aluno) {
+      res.status(404).send('Aluno não encontrado');
+    } else {
+      res.status(200).json(aluno);
+    }
+  });
+});
+
+// Rota para remoção de um aluno por ID
+app.delete('/alunos/:id', function(req, res) {
+  Aluno.findByIdAndDelete(req.params.id, function(err, aluno) {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Erro ao remover aluno');
+    } else if (!aluno) {
+      res.status(404).send('Aluno não encontrado');
+    } else {
+      res.status(204).send();
+    }
+  });
+});
+
+// Inicialização do servidor
+app.listen(port, function() {
+  console.log(`Servidor rodando na porta ${port}`);
+});
