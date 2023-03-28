@@ -1,0 +1,85 @@
+//importando  as bibliotecas
+
+const http = require('http');
+const soap = require('soap');
+
+
+//Definindo os parâmetros de entrada do web service
+
+const service = {
+  MyService: {
+    MyPort: {
+      sayHello: function(args) {
+        return {
+          message: `Hello, ${args.name}!`
+        };
+      }
+    }
+  }
+};
+
+//Criando o servidor HTTP e definindo a rota para o web service
+
+const server = http.createServer((req, res) => {
+  res.end('404: Not Found');
+});
+
+const xml = require('fs').readFileSync('./myservice.wsdl', 'utf8');
+const options = {
+  disableCache: true,
+  endpoint: '/myservice'
+};
+
+soap.listen(server, '/myservice', service, xml);
+
+//Arquivo WSDL para o web service
+
+<definitions name="MyService"
+  targetNamespace="http://localhost:8000/myservice.wsdl"
+  xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:tns="http://localhost:8000/myservice.wsdl"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <message name="SayHelloRequest">
+    <part name="name" type="xsd:string"/>
+  </message>
+
+  <message name="SayHelloResponse">
+    <part name="message" type="xsd:string"/>
+  </message>
+
+  <portType name="MyPortType">
+    <operation name="sayHello">
+      <input message="tns:SayHelloRequest"/>
+      <output message="tns:SayHelloResponse"/>
+    </operation>
+  </portType>
+
+  <binding name="MyBinding" type="tns:MyPortType">
+    <soap:binding style="document"
+      transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="sayHello">
+      <soap:operation soapAction="sayHello"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+
+  <service name="MyService">
+    <port name="MyPort" binding="tns:MyBinding">
+      <soap:address location="http://localhost:8000/myservice"/>
+    </port>
+  </service>
+</definitions>
+
+//Iniciando o servidor HTTP
+
+const PORT = 8000;
+server.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
