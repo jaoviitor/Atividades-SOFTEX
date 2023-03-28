@@ -1,0 +1,29 @@
+package com.example.soapserver;
+
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+@WebService
+public class UsuarioEndpoint {
+  
+  @WebMethod
+  public String listarUsuarios() {
+    return "Lista de usuários";
+  }
+  
+  @WebMethod
+  public String criarUsuario(String nome, String email) {
+    return "Usuário criado com nome " + nome + " e email " + email;
+  }
+  
+  @WebMethod
+  public String atualizarUsuario(int id, String nome, String email) {
+    return "Usuário com ID " + id + " atualizado com nome " + nome + " e email " + email;
+  }
+  
+  @WebMethod
+  public String excluirUsuario(int id) {
+    return "Usuário com ID " + id + " excluído";
+  }
+
+}
