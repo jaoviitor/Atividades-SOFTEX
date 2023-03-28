@@ -1,0 +1,13 @@
+Regras de uma API REST:
+
+1. Arquitetura Cliente-Servidor: A API REST deve seguir o modelo cliente-servidor, em que o cliente faz uma requisição ao servidor, que processa e retorna uma resposta.
+
+2. Sem Estado (Stateless): Cada requisição enviada pelo cliente para o servidor deve conter todas as informações necessárias para o servidor entender e processar a requisição, sem precisar manter um estado ou contexto da sessão do cliente.
+
+3. Cacheável: O servidor deve indicar se a resposta pode ou não ser cacheada pelo cliente, para que o mesmo possa armazenar a resposta e utilizá-la novamente em requisições futuras.
+
+4. Interface Uniforme: As operações disponíveis na API REST devem ser padronizadas, seguindo a interface uniforme que define um conjunto de verbos HTTP (GET, POST, PUT, DELETE, etc.) e padrões de representação (XML, JSON, etc.).
+
+5. Sistema em Camadas: A API REST deve ser construída em camadas hierárquicas, de modo que cada camada não possa ver além da camada imediatamente inferior. Isso permite a escalabilidade e a flexibilidade da aplicação.
+
+6. Code-On-Demand (opcional): A API REST pode permitir que o servidor forneça código executável sob demanda para ser executado pelo cliente, como é o caso de applets ou scripts em JavaScript.
