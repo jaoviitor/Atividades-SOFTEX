@@ -1,0 +1,92 @@
+const mysql = require('mysql');
+
+// Configurações de conexão com o banco de dados
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'senha',
+  database: 'dbJogos'
+});
+
+// Função para listar todos os jogos
+function listarJogos(req, res) {
+  connection.query('SELECT * FROM jogos', (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Erro ao buscar jogos');
+    } else {
+      res.json(results);
+    }
+  });
+}
+
+// Função para buscar um jogo por ID
+function buscarJogo(req, res) {
+  const id = req.params.id;
+
+  connection.query('SELECT * FROM jogos WHERE id = ?', id, (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Erro ao buscar jogo');
+    } else if (results.length == 0) {
+      res.status(404).send('Jogo não encontrado');
+    } else {
+      res.json(results[0]);
+    }
+  });
+}
+
+// Função para cadastrar um jogo
+function cadastrarJogo(req, res) {
+  const jogo = req.body;
+
+  connection.query('INSERT INTO jogos SET ?', jogo, (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Erro ao cadastrar jogo');
+    } else {
+      res.status(201).send('Jogo cadastrado com sucesso');
+    }
+  });
+}
+
+// Função para atualizar um jogo por ID
+function atualizarJogo(req, res) {
+  const id = req.params.id;
+  const jogo = req.body;
+
+  connection.query('UPDATE jogos SET ? WHERE id = ?', [jogo, id], (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Erro ao atualizar jogo');
+    } else if (results.affectedRows == 0) {
+      res.status(404).send('Jogo não encontrado');
+    } else {
+      res.send('Jogo atualizado com sucesso');
+    }
+  });
+}
+
+// Função para excluir um jogo por ID
+function excluirJogo(req, res) {
+  const id = req.params.id;
+
+  connection.query('DELETE FROM jogos WHERE id = ?', id, (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Erro ao excluir jogo');
+    } else if (results.affectedRows == 0) {
+      res.status(404).send('Jogo não encontrado');
+    } else {
+      res.send('Jogo excluído com sucesso');
+    }
+  });
+}
+
+module.exports = {
+  listarJogos,
+  buscarJogo,
+  cadastrarJogo,
+  atualizarJogo,
+  excluirJogo
+};
